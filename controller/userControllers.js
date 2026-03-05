@@ -13,7 +13,7 @@ exports.getAllUsers = (req, res) => {
 // Create a new user
 exports.createUser = (req, res) => {
   const { name, price, quantity, supplier } = req.body;     
-    connection.query('INSERT INTO inventory (itemName, unitPrice, quantity, supplier) VALUES (?, ?, ?, ?)', [itemName, unitPrice, quantity, supplier], (err, results) => {
+    connection.query('INSERT INTO inventory (itemName, unitPrice, quantity, supplier) VALUES (?, ?, ?, ?)', [name, price, quantity, supplier], (err, results) => {
     if (err) {
         return res.status(500).json({ error: 'Database query failed' });
     }
@@ -21,3 +21,4 @@ exports.createUser = (req, res) => {
     });
 
 };
+
