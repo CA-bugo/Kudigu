@@ -10,15 +10,19 @@ exports.getAllUsers = (req, res) => {
   });
 };
 
-// Create a new user
+JavaScript
+Copy
 exports.createUser = (req, res) => {
-  const { name, price, quantity, supplier } = req.body;     
-    connection.query('INSERT INTO inventory (itemName, unitPrice, quantity, supplier) VALUES (?, ?, ?, ?)', [name, price, quantity, supplier], (err, results) => {
-    if (err) {
+  const { iname, uprice, quan, sup } = req.body; // Match frontend
+    
+  connection.query(
+    'INSERT INTO inventory (itemName, unitPrice, quantity, supplier) VALUES (?, ?, ?, ?)', 
+    [iname, uprice, quan, sup], 
+    (err, results) => {
+      if (err) {
         return res.status(500).json({ error: 'Database query failed' });
+      }
+      res.json({ message: 'User created successfully', id: results.insertId });
     }
-    res.json({ message: 'User created successfully', id: results.insertId });
-    });
-
+  );
 };
-
